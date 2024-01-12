@@ -5,8 +5,9 @@ namespace Business.Abstract
 {
     public interface IBrandService
     {
-        public Brand AddBrand(Brand brand);
+        public Brand Add(Brand brand);
 
-        public IList<Brand> GetBrandList();
+        public IList<Brand> GetList();
+
     }
 }

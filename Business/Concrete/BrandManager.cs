@@ -21,7 +21,7 @@ namespace Business.Concrete
             //Başka katmanların class'ları new'lenmez. 
             //Bu yüzden dependency injection
         }
-        public Brand AddBrand(Brand brand )
+        public Brand Add(Brand brand )
         {
             //addBrandRequest
             //İş kuralları
@@ -36,7 +36,7 @@ namespace Business.Concrete
             //Brand addedBrand = _brandDal.Add();
         }
 
-        public IList<Brand> GetBrandList()
+        public IList<Brand> GetList()
         {
             IList<Brand> brandList = _brandDal.GetList();
             return brandList;
