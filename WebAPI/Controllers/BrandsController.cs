@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Requests.Brand;
+using Business.Responses.Brand;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -13,7 +15,7 @@ namespace WebAPI.Controllers
     public class BrandsController : ControllerBase
     {
         //field olarak Brand'i tanımlayalım
-        private readonly IBrandService _brandService;
+        private readonly IBrandService _brandService; //Field
 
         public BrandsController()
 
@@ -44,16 +46,17 @@ namespace WebAPI.Controllers
         public ICollection<Brand> GetList()
         {
             IList<Brand> brandList = _brandService.GetList();
-            return brandList;
+            return brandList; //JSON
         }
 
         //[HttpPost("/add")]  // POST http://localhost:5112/api/brands/add //endpoint 
 
         [HttpPost]  // POST http://localhost:5112/api/brands
-        public Brand Add(Brand addBrandRRequest)
+        public ActionResult<AddBrandResponse>Add(AddBrandRequest request)
         {
-            Brand addedBrand = _brandService.Add(addBrandRRequest);
-            return addedBrand;
+           AddBrandResponse response = _brandService.Add(request);
+            //return response;
+            return CreatedAtAction(nameof(GetList),response);
 
         }
         

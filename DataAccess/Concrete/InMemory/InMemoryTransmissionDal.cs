@@ -11,5 +11,9 @@ namespace DataAccess.Concrete.InMemory
 {
     internal class InMemoryTransmissionDal : InMemoryEntityRepositoryBase<Transmission, int>, ITransmissionDal
     {
+        protected override int generateId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

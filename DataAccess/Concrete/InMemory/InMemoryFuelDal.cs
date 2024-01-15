@@ -9,7 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryFuelDal:InMemoryEntityRepositoryBase<Fuel, int>, IFuelDal
+    public class InMemoryFuelDal : InMemoryEntityRepositoryBase<Fuel, int>, IFuelDal
     {
+        protected override int generateId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,8 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.BusinessRules;
+using Business.Requests.Brand;
+using Business.Responses.Brand;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -14,26 +17,36 @@ namespace Business.Concrete
     public class BrandManager : IBrandService
     {
        private readonly IBrandDal _brandDal;
-        private readonly BrandBusinessRules brandBusinessRules;
-        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules)
-        {     //new InMemoryBrandDal();
-            //Başka katmanların class'ları new'lenmez. 
-            //Bu yüzden dependency injection
+        private readonly BrandBusinessRules _brandBusinessRules;
+        private readonly IMapper _mapper;
+        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper)
+        {    //new InMemoryBrandDal(); //Başka katmanların class'ları new'lenmez. //Bu yüzden dependency injection
+
             _brandDal = brandDal;
-             brandBusinessRules = brandBusinessRules;
+             _brandBusinessRules = brandBusinessRules;
+            _mapper = mapper;
        
         }
-        public Brand Add(Brand brand )
+        public AddBrandResponse Add(AddBrandRequest request)
         {
-            brandBusinessRules.CheckIfBrandNameNotExists(brand.Name);
+
             //addBrandRequest
             //İş kuralları
+            _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
             //validation
             //yetki kontrolü
             //Cache
             //Transaction
-            _brandDal.Add(brand);
-            return brand;
+
+            //Brand brandToAdd = new(request.Name); --Bunu yapmak yerine mapping yapacağız
+       
+            Brand brandToAdd = _mapper.Map<Brand>(request);      //Mapping 
+            _brandDal.Add(brandToAdd);
+
+           
+
+            AddBrandResponse response = _mapper.Map<AddBrandResponse>(brandToAdd);
+            return response;
 
 
             //Brand addedBrand = _brandDal.Add();
