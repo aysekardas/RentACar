@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessRules;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -12,24 +13,19 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-       private IBrandDal _brandDal;
-        
-        public BrandManager(IBrandDal brandDal)
-        {
-            _brandDal = brandDal; 
-            //new InMemoryBrandDal();
+       private readonly IBrandDal _brandDal;
+        private readonly BrandBusinessRules brandBusinessRules;
+        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules)
+        {     //new InMemoryBrandDal();
             //Başka katmanların class'ları new'lenmez. 
             //Bu yüzden dependency injection
+            _brandDal = brandDal;
+             brandBusinessRules = brandBusinessRules;
+       
         }
         public Brand Add(Brand brand )
         {
-            //tüm verileri indir o şekilde kontrol yap(daha sonra değiştireceğiz)
-            bool isExists = _brandDal.GetList().Any(b=>b.Name == brand.Name);
-
-            if (isExists)
-            {
-                throw new Exception("Brand aldready exists."); //Varsa hata fırlatacak
-            }
+            brandBusinessRules.CheckIfBrandNameNotExists(brand.Name);
             //addBrandRequest
             //İş kuralları
             //validation
