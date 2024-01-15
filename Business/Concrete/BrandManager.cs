@@ -23,6 +23,13 @@ namespace Business.Concrete
         }
         public Brand Add(Brand brand )
         {
+            //tüm verileri indir o şekilde kontrol yap(daha sonra değiştireceğiz)
+            bool isExists = _brandDal.GetList().Any(b=>b.Name == brand.Name);
+
+            if (isExists)
+            {
+                throw new Exception("Brand aldready exists."); //Varsa hata fırlatacak
+            }
             //addBrandRequest
             //İş kuralları
             //validation
