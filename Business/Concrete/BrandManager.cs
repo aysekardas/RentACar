@@ -2,8 +2,12 @@
 using Business.Abstract;
 using Business.BusinessRules;
 using Business.Requests.Brand;
+using Business.Requests.Transmission;
 using Business.Responses.Brand;
+using Business.Responses.Fuel;
+using Business.Responses.Transmission;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -59,3 +63,4 @@ namespace Business.Concrete
         }
     }
 }
+

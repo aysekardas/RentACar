@@ -18,6 +18,11 @@ namespace Entities.Concrete
 
         public Brand? Brand { get; set; } = null;
 
+        public Fuel? Fuel { get; set; } = null;
+
+        public Transmission? Transmission { get; set; } = null;
+
+
 
     }
 }

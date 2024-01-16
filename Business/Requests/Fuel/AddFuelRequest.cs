@@ -1,19 +1,15 @@
-﻿using Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Business.Requests.Fuel
 {
-    public class Transmission : Entity<int>
-    { 
+    public class AddFuelRequest
+    {
         public string Name { get; set; }
-
-        public Transmission() { }
-
-        public Transmission(string name)
+        public AddFuelRequest(string name)
         {
             Name = name;
         }
