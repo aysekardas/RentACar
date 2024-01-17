@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         //field olarak Brand'i tanımlayalım
         private readonly IBrandService _brandService; //Field
 
-        public BrandsController()
+        public BrandsController(IBrandService brandService)
 
         {
             //Her HTTP Request için yeni bir Controller nesnesi oluşturuyor.
@@ -26,7 +26,8 @@ namespace WebAPI.Controllers
             //IoC Container yapısını kurunca dependency injection ile olacak.
 
 
-            _brandService = ServiceRegistration.BrandService;
+           // _brandService = ServiceRegistration.BrandService;
+            _brandService = brandService;
         }
 
         //[HttpGet]
