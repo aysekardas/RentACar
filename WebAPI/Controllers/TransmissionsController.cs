@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
 
       public TransmissionsController()
         {
-            _transmissionService = ServiceRegistration.TransmissionService;
+           // _transmissionService = ServiceRegistration.TransmissionService;
         }
 
 

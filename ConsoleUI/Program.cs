@@ -599,10 +599,10 @@ userDal.Add(user);
 #endregion
 
 
-//Configuration
-IBrandDal brandDal = new InMemoryBrandDal();
-IBrandService brandService = new BrandManager(brandDal);
+////Configuration
+//IBrandDal brandDal = new InMemoryBrandDal();
+//IBrandService brandService = new BrandManager(brandDal);
 
-// RentACar add brand BMW
-Brand brandToAdd = new Brand { Name = "BMW" };
-brandService.Add(brandToAdd);
+//// RentACar add brand BMW
+//Brand brandToAdd = new Brand { Name = "BMW" };
+//brandService.Add(brandToAdd);
