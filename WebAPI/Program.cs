@@ -4,6 +4,7 @@ using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using System.Reflection;
+using Business.DependencyResolvers;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

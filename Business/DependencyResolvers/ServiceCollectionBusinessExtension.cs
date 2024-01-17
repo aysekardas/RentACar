@@ -4,12 +4,8 @@ using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Business.DependencyResolvers
 {
