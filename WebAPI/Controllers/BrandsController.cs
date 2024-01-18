@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
@@ -44,10 +45,11 @@ namespace WebAPI.Controllers
 
 
         [HttpGet]
-        public ICollection<Brand> GetList()
+        public GetBrandListResponse GetList([FromQuery]GetBrandListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
         {
-            IList<Brand> brandList = _brandService.GetList();
-            return brandList; //JSON
+            
+            GetBrandListResponse response = _brandService.GetList(request);
+            return response; //JSON
         }
 
         //[HttpPost("/add")]  // POST http://localhost:5112/api/brands/add //endpoint 

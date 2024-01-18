@@ -56,10 +56,15 @@ namespace Business.Concrete
             //Brand addedBrand = _brandDal.Add();
         }
 
-        public IList<Brand> GetList()
+        public GetBrandListResponse GetList(GetBrandListRequest request)
         {
+            //brandList.Items diye bir alan yok, bu yüzden mapping
+            //Brand => BrandListItemDto
+           // IList<BrandListItemDto> GetBrandListResponse
+
             IList<Brand> brandList = _brandDal.GetList();
-            return brandList;
+            GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList);
+            return response;
         }
     }
 }
