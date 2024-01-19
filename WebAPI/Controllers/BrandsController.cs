@@ -57,10 +57,28 @@ namespace WebAPI.Controllers
         [HttpPost]  // POST http://localhost:5112/api/brands
         public ActionResult<AddBrandResponse>Add(AddBrandRequest request)
         {
-           AddBrandResponse response = _brandService.Add(request);
-            //return response;
-            return CreatedAtAction(nameof(GetList),response);
+            try
+            {
+                AddBrandResponse response = _brandService.Add(request);
+                //return response;
+                return CreatedAtAction(nameof(GetList), response);
+            }
 
+
+            catch (Core.CrossCuttingConcerns.Exceptions.BusinessException exception)
+            {
+                return BadRequest(
+
+                    new Core.CrossCuttingConcerns.Exceptions.BusinessProblemDetails()
+                    {
+                        Title = "Business Exception",
+                        Status = StatusCodes.Status400BadRequest,
+                        Detail = exception.Message,
+                        Instance = HttpContext.Request.Path
+                    }
+                );
+
+            }
         }
         
         

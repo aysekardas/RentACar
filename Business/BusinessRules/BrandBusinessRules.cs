@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.CrossCuttingConcerns.Exceptions;
+using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,12 @@ namespace Business.BusinessRules
 
             //Kısaca:Listede adı eşit olan herhangi bir öğe olup olmadığını kontrol etmek için
 
-            if (isExists)
-            {
-                throw new Exception("Brand aldready exists."); //Varsa hata fırlatacak
-            }
+         
+                if (isExists)
+                {
+                    throw new BusinessException("Brand aldready exists."); //Varsa hata fırlatacak
+                }
+         
 
         }
     }
