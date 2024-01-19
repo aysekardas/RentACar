@@ -5,6 +5,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using System.Reflection;
 using Business.DependencyResolvers;
+using Core.CrossCuttingConcerns.Exceptions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+//app.UseGlobalExceptionHandling();
+app.UseGLobalExceptionHandling();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -33,5 +36,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

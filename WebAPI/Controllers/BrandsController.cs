@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
                         Detail = exception.Message,
                         Instance = HttpContext.Request.Path
                     }
-                );
+                ); //400 Bad Request
 
             }
         }
