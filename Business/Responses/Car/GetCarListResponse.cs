@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Responses.Car
 {
-    public class GetCarResponse
+    public class GetCarListResponse
     {
     }
 }

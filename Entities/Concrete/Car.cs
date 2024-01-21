@@ -9,17 +9,19 @@ namespace Entities.Concrete
 {
     public class Car : Entity<int>
     {
+        public Car()
+        {
+        }
+
+        public Car(int id)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
-        public int ColorId { get; set; }
 
-        public int ModelId { get; set; }
 
-        public string CarState { get; set; }
 
-        public string Km { get; set; }
 
-        public int ModelYear { get; set; }
-
-        public string Plate { get; set; }
     }
 }

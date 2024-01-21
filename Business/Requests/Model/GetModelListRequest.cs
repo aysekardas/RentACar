@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Requests.Model
 {
-    public class GetModelRequest
+    public class GetModelListRequest
     {
     }
 }

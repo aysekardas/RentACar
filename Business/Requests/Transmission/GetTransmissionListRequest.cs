@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Responses.Model
+namespace Business.Requests.Transmission
 {
-    public class GetModelResponse
+    public class GetTransmissionListRequest
     {
     }
 }

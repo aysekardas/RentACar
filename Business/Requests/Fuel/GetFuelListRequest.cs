@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Requests.Transmission
+namespace Business.Requests.Fuel
 {
-    public class GetTransmissionRequest
+    public class GetFuelListRequest
     {
     }
 }

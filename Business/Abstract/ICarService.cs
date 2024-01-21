@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Requests.Car;
+using Business.Responses.Car;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +11,8 @@ namespace Business.Abstract
     public interface ICarService
 
     {
+       public AddCarResponse Add(AddCarRequest request);
+
+        public GetCarListResponse GetList(GetCarListRequest request);
     }
 }

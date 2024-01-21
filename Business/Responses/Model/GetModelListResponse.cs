@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Responses.Fuel
+namespace Business.Responses.Model
 {
-    public class GetFuelResponse
+    public class GetModelListResponse
     {
     }
 }
