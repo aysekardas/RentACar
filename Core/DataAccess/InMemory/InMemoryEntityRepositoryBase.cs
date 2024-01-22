@@ -6,7 +6,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
     : IEntityRepository<TEntity, TEntityId>
     where TEntity : class, IEntity<TEntityId>, new()
 {
-    protected readonly HashSet<TEntity> _entities = new();
+    protected readonly HashSet<TEntity> Entities = new();
 
     protected abstract TEntityId generateId(); //Kalıtım alan classta tanımlayabilsin o yüzden protected
     
@@ -14,7 +14,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
     {
         entity.Id = generateId();
         entity.CreatedAt = DateTime.UtcNow;
-        _entities.Add(entity);
+        Entities.Add(entity);
         return entity;
     }
 
@@ -26,10 +26,10 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
 
     public TEntity? Get(Func<TEntity, bool> predicate)
     {
-        TEntity? entity = _entities.FirstOrDefault(predicate);
+        TEntity? entity = Entities.FirstOrDefault(predicate);
 
         #region İlk Kullanım
-        //TEntity? entity = _entities.FirstOrDefault(
+        //TEntity? entity = Entities.FirstOrDefault(
         //    e => e.Id.Equals(id) && e.DeletedAt.HasValue == false
         //);
         #endregion
@@ -38,7 +38,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
 
     public IList<TEntity> GetList(Func<TEntity, bool>? predicate = null)
     {
-        IEnumerable<TEntity> query = _entities;
+        IEnumerable<TEntity> query = Entities;
 
 
         if (predicate != null)
@@ -48,7 +48,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
 
 
         #region IQueryable
-        //IQueryable<TEntity> query = _entities.AsQueryable();
+        //IQueryable<TEntity> query = Entities.AsQueryable();
 
         //if (predicate != null) //predicate is not null
         //{
@@ -60,7 +60,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
         #endregion
 
         #region İlk Kullanım
-        //IList<TEntity> entities = _entities.Where(e => e.DeletedAt.HasValue == false).ToList();
+        //IList<TEntity> entities = Entities.Where(e => e.DeletedAt.HasValue == false).ToList();
         //return entities;
         #endregion
     }

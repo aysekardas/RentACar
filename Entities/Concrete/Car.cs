@@ -13,12 +13,10 @@ namespace Entities.Concrete
         {
         }
 
-        public Car(int id)
-        {
-            Id = id;
-        }
 
-        public int Id { get; set; }
+        public int CarId { get; set; }
+
+
 
 
 
