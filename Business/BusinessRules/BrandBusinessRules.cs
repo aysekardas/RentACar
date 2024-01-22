@@ -20,16 +20,25 @@ namespace Business.BusinessRules
 
         public void CheckIfBrandNameNotExists(string brandName)
         {
-            bool isExists = _brandDal.GetList().Any(b => b.Name == brandName); //>Brandler üzerinde bir liste alıp Any methodu ile koleksiyonu tek tek gezecek, Name == brandName ile soru ifadesi olarak geziyor)
+            bool isExists = _brandDal.Get(b => b.Name == brandName) is not null;
+            if (isExists)
+            {
+                throw new BusinessException("Brand aldready exists."); 
+            }
 
-            //Kısaca:Listede adı eşit olan herhangi bir öğe olup olmadığını kontrol etmek için
+            #region İlk kullanım
+            //bool isExists = _brandDal.GetList().Any(b => b.Name == brandName);
+            
+            ////>Brandler üzerinde bir liste alıp Any methodu ile koleksiyonu tek tek gezecek, Name == brandName ile soru ifadesi olarak geziyor)
+
+            ////Kısaca:Listede adı eşit olan herhangi bir öğe olup olmadığını kontrol etmek için
 
          
-                if (isExists)
-                {
-                    throw new BusinessException("Brand aldready exists."); //Varsa hata fırlatacak
-                }
-         
+            //    if (isExists)
+            //    {
+            //        throw new BusinessException("Brand aldready exists."); //Varsa hata fırlatacak
+            //    }
+            #endregion
 
         }
     }

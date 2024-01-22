@@ -10,27 +10,27 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfFuelDal : IFuelDal
     {
-        public void Add(Fuel entity)
+        public Fuel Add(Fuel entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Fuel entity)
+        public Fuel Delete(Fuel entity)
         {
             throw new NotImplementedException();
         }
 
-        public Fuel? GetById(int id)
+        public Fuel? Get(Func<Fuel, bool> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Fuel> GetList()
+        public IList<Fuel> GetList(Func<Fuel, bool>? predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Fuel entity)
+        public Fuel Update(Fuel entity)
         {
             throw new NotImplementedException();
         }
