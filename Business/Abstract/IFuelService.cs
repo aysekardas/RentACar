@@ -14,6 +14,8 @@ namespace Business.Abstract
     {
         
         public AddFuelResponse Add(AddFuelRequest request);
-        public IList<Fuel> GetList();
+
+        public GetFuelListResponse GetList(GetFuelListRequest request);
+        //public IList<Fuel> GetList();
     }
 }

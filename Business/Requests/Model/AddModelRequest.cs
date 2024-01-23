@@ -28,6 +28,8 @@ namespace Business.Requests.Model
 
         public short Year { get; set; }
 
+        
+
     }
 
 }

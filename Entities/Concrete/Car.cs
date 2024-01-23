@@ -13,13 +13,17 @@ namespace Entities.Concrete
         {
         }
 
-
         public int CarId { get; set; }
+        public int ColorId { get; set; }
 
+        public int ModelId { get; set; }
 
+        public string CarState { get; set; }
 
+        public string Kilometer { get; set; }
 
+        public short ModelYear { get; set; }
 
-
+        public string Plate { get; set; }
     }
 }

@@ -37,10 +37,12 @@ namespace Business.Concrete
             return response;
         }
 
-        public IList<Transmission> GetList()
+        public GetTransmissionListResponse GetList(GetTransmissionListRequest request)
         {
             IList<Transmission> transmissionList = _transmissionDal.GetList();
-            return transmissionList;
+            GetTransmissionListResponse response = _mapper.Map<GetTransmissionListResponse>(transmissionList);
+            return response;
+           // return transmissionList;
         }
     }
 }

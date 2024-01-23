@@ -38,10 +38,13 @@ namespace Business.Concrete
             return response;
         }
 
-        public IList<Fuel> GetList()
+        public GetFuelListResponse GetList(GetFuelListRequest request)
         {
             IList<Fuel> fuelList = _fuelDal.GetList();
-            return fuelList;
+            GetFuelListResponse response = _mapper.Map<GetFuelListResponse>(fuelList);
+            return response;
+            //IList<Fuel> fuelList = _fuelDal.GetList();
+            //return fuelList;
         }
     }
 }

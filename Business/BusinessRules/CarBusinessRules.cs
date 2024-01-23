@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace Business.BusinessRules
 {
     public class CarBusinessRules
     {
+        private readonly ICarDal _carDal;
+
+        public CarBusinessRules(ICarDal carDal)
+        {
+            _carDal = carDal;
+        }
     }
 }

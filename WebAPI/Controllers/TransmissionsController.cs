@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Requests.Transmission;
 using Business.Responses.Transmission;
 using Entities.Concrete;
@@ -20,12 +21,21 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet]
-        public ICollection<Transmission> GetList()
+        //[HttpGet]
+        //public ICollection<Transmission> GetList()
+        //{
+        //    IList<Transmission> transmissionList = _transmissionService.GetList();
+        //    return transmissionList;
+        //}
+
+        [HttpGet] 
+        public GetTransmissionListResponse GetList([FromQuery] GetTransmissionListRequest request) 
         {
-            IList<Transmission> transmissionList = _transmissionService.GetList();
-            return transmissionList;
+            GetTransmissionListResponse response = _transmissionService.GetList(request);
+            return response;
         }
+
+
 
         [HttpPost]
 

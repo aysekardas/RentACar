@@ -13,18 +13,26 @@ namespace WebAPI.Controllers
     {
         private readonly IFuelService _fuelService;
 
-        public FuelsController()
+        public FuelsController(IFuelService fuelService)
         {
+            _fuelService = fuelService;
             //_fuelService = ServiceRegistration.FuelService;
         }
 
-        [HttpGet]
-        public ICollection<Fuel>GetList()
-        {
-            IList<Fuel> fuelList = _fuelService.GetList();
-            return fuelList;
-        }
+        //[HttpGet]
+        //public ICollection<Fuel>GetList()
+        //{
+        //    //IList<Fuel> fuelList = _fuelService.GetList();
+        //    //return fuelList;
+        //}
 
+        [HttpGet]
+
+        public GetFuelListResponse GetList([FromQuery] GetFuelListRequest request)
+        {
+            GetFuelListResponse response = _fuelService.GetList(request);
+            return response;
+        }
 
         [HttpPost]
         public ActionResult<AddFuelResponse>Add(AddFuelRequest request)
