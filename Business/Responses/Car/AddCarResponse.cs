@@ -10,10 +10,10 @@ namespace Business.Responses.Car
     {
         public AddCarResponse(int id, int colorId, int modelId, string carState, string kilometer, short modelYear, string plate)
         {
-            if(!IsValidModelYear(modelYear))
-            {
-                throw new ArgumentException("Model yılı en fazla 20 yıl önceye ait olabilir");
-            }
+            //if(!IsValidModelYear(modelYear))
+            //{
+            //    throw new ArgumentException("Model year can be up to 20 years old");
+            //}
             Id = id;
             ColorId = colorId;
             ModelId = modelId;
@@ -22,6 +22,7 @@ namespace Business.Responses.Car
             ModelYear = modelYear;
             Plate = plate;
         }
+
 
         public int Id { get; set; }
         public int ColorId { get; set; }
@@ -36,11 +37,7 @@ namespace Business.Responses.Car
 
         public string Plate { get; set; }
 
-        private bool IsValidModelYear(short modelYear)
-        {
-            int currentYear = DateTime.Now.Year;
-            return (currentYear - modelYear) <= 20;
-        }
+        
 
     }
 }

@@ -17,7 +17,7 @@ namespace Business.Requests.Car
             ModelYear = modelYear;
             Plate = plate;
         }
-
+       
         public int ColorId { get; set; }
 
         public int ModelId { get; set; }
@@ -27,13 +27,8 @@ namespace Business.Requests.Car
         public string Kilometer { get; set; }
 
         public short ModelYear { get; set; }
-
         public string Plate { get; set; }
 
-        private bool IsValidModelYear(short modelYear)
-        {
-            int currentYear = DateTime.Now.Year;
-            return (currentYear - modelYear) <= 20;
-        }
+      
     }
 }
