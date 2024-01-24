@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
 
-        public Fuel Delete(Fuel entity)
+        public Fuel Delete(Fuel entity, bool isSoftDelete)
         {
             throw new NotImplementedException();
         }

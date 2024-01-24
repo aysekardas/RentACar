@@ -32,6 +32,12 @@ namespace Business.DependencyResolvers
 
             //Http request gelince bir scope açılıyor, o isteğe özel bu kısmı oluşturabilirim;(O Scope her açıldığında o scope'a özel referans veriyor.
             //builder.Services.AddTransient<BrandBusinessRules>();
+            services
+                .AddSingleton<IModelService, ModelManager>()
+                .AddSingleton<IModelDal, InMemoryModelDal>()
+                .AddSingleton<ModelBusinessRules>();
+
+
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //AutoMapper.Extensions.Microsoft.DependencyInjection NuGet Paketi

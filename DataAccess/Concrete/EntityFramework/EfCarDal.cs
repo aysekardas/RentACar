@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
 
-        public Car Delete(Car entity)
+        public Car Delete(Car entity, bool isSoftDelete = true)
         {
             throw new NotImplementedException();
         }

@@ -34,10 +34,10 @@ namespace Business.Concrete
             //fluent validation ile buradan ayrıştıracağız daha sonra
             if (request.Name.Length < 2)
                 throw new Exception("Name must be at least 2 characters long.");
-            if (request.Name.Length < 50)
+            if (request.Name.Length > 50)
                 throw new Exception("Name cannot be longer then 50 characters");
 
-            if (request.DailyPrice > 0)
+            if (request.DailyPrice <= 0)
                 throw new Exception("Daily price must be greater than 0.");
 
             //business rules
@@ -48,11 +48,11 @@ namespace Business.Concrete
 
             //data operations
 
-            Model updateModel = _modelDal.Add(modelToAdd);
+            Model addedModel = _modelDal.Add(modelToAdd);
 
             //response
 
-            var response = _mapper.Map<AddModelResponse>(updateModel);
+            var response = _mapper.Map<AddModelResponse>(addedModel);
 
             return response;
 
@@ -62,12 +62,20 @@ namespace Business.Concrete
 
         public DeleteModelResponse Delete(DeleteModelRequest request)
         {
-            throw new NotImplementedException();
+           Model? modelToDelete = _modelDal.Get(predicate: model=>model.Id == request.Id); /*0x123123*/
+            _modelBusinessRules.CheckIfModelExists(modelToDelete);
+            Model? deleteModel =  _modelDal.Delete(modelToDelete!);
+           var response = _mapper.Map<DeleteModelResponse>(deleteModel);
+            return response;
         }
 
         public GetModelByIdResponse GetById(GetModelByIdRequest request)
         {
-            throw new NotImplementedException();
+            Model? model = _modelDal.Get(predicate:model=> model.Id == request.Id);
+            _modelBusinessRules.CheckIfModelExists(model);
+             
+            var response = _mapper.Map<GetModelByIdResponse>(model);
+            return response;
         }
 
         public GetModelListResponse GetList(GetModelListRequest request)
@@ -127,7 +135,18 @@ namespace Business.Concrete
 
         public UpdateModelResponse Update(UpdateModelRequest request)
         {
-            throw new NotImplementedException();
+            Model? modelToUpdate = _modelDal.Get(predicate: model => model.Id == request.Id); //0x123123
+            _modelBusinessRules.CheckIfModelExists(modelToUpdate);
+
+            //Bu şekilde yapmayacağız;
+            //modelToUpdate = _mapper.Map<Model>(request); //0x333123 yeni bir referans
+            //Çünkü bizim için yeni bir nesne (referans) oluşturuyor. Ve ayrıca entity sınıfında olup da request sınıfında olmayan alanlar(örneğin CreatedAt vb.) varsayılan değerler alacak, böylece yanlış veri güncellemesi yapmış oluruz. 
+            modelToUpdate = _mapper.Map(request, modelToUpdate); /*0x123123*/
+            Model updatedModel = _modelDal.Update(modelToUpdate!); /*0x123123*/
+
+
+            var response = _mapper.Map<UpdateModelResponse>(updatedModel);
+            return response;
         }
     }
 }

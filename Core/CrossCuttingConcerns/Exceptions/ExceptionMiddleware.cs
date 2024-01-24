@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -73,7 +74,27 @@ namespace Core.CrossCuttingConcerns.Exceptions
             if (exception is BusinessException businessException)
                 return createBusinessProblemDetailsResponse(httpContext, businessException);
 
+            if (exception is NotFoundException notFoundException)
+                return createInternalProblemDetailsResponse(httpContext, notFoundException);
+
             return createInternalProblemDetailsResponse(httpContext, exception);
+
+        }
+
+        private Task createInternalProblemDetailsResponse(HttpContext httpContext, NotFoundException notFoundException)
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+
+            NotFoundProblemDetails notFoundProblemDetails = new()
+            {
+                Title = "Not Found",
+                Type = "http://doc.rentacar.com/not-found",
+                Status = StatusCodes.Status404NotFound,
+                Detail = notFoundException.Message,
+                Instance = httpContext.Request.Path
+            };
+
+            return httpContext.Response.WriteAsync(notFoundProblemDetails.ToString());
 
         }
 

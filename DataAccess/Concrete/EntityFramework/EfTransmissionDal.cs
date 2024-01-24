@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
 
-        public Transmission Delete(Transmission entity)
+        public Transmission Delete(Transmission entity, bool isSoftDelete)
         {
             throw new NotImplementedException();
         }

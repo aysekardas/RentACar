@@ -18,9 +18,12 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
         return entity;
     }
 
-    public TEntity Delete(TEntity entity)
+    public TEntity Delete(TEntity entity, bool isSoftDelete = true)
     {
-        entity.DeletedAt = DateTime.UtcNow;
+        entity.DeletedAt = DateTime.UtcNow; //soft delete
+
+        if(!isSoftDelete)
+        Entities.Remove(entity); //hard delete
         return entity;
     }
 
@@ -33,6 +36,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
         //    e => e.Id.Equals(id) && e.DeletedAt.HasValue == false
         //);
         #endregion
+
         return entity;
     }
 

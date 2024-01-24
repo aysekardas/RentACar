@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
 
-        public Model Delete(Model entity)
+        public Model Delete(Model entity, bool isSoftDelete)
         {
             throw new NotImplementedException();
         }
