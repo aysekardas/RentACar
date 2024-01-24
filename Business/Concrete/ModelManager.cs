@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.BusinessRules;
+using Business.Profiles.Validation.FluentValidation.Model;
 using Business.Requests.Model;
 using Business.Responses.Model;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -32,16 +35,27 @@ namespace Business.Concrete
         {
             //Validation
             //fluent validation ile buradan ayrıştıracağız daha sonra
-            if (request.Name.Length < 2)
-                throw new Exception("Name must be at least 2 characters long.");
-            if (request.Name.Length > 50)
-                throw new Exception("Name cannot be longer then 50 characters");
 
-            if (request.DailyPrice <= 0)
-                throw new Exception("Daily price must be greater than 0.");
+
+
+
+
+
+            //if (request.Name.Length < 2)
+            //    throw new Exception("Name must be at least 2 characters long.");
+            //if (request.Name.Length > 50)
+            //    throw new Exception("Name cannot be longer then 50 characters");
+
+            //if (request.DailyPrice <= 0)
+            //    throw new Exception("Daily price must be greater than 0.");
+
+
+            AddModelRequestValidator validator = new();
+            validator.ValidateAndThrow(request);
 
             //business rules
             _modelBusinessRules.CheckIfModelNameExists(request.Name);
+            _modelBusinessRules.CheckIfModelYearShouldBeInLast20Years(request.Year);
 
             //mapping
             var modelToAdd = _mapper.Map<Model>(request);
@@ -88,7 +102,7 @@ namespace Business.Concrete
             //bool predicate(Model model)
             //{
 
-            //        return (request.FilterByBrandId == null || model.BrandId == request.FilterByBrandId)
+            //        return (request.FilterByBrandId == null || model.Tr == request.FilterByBrandId)
             //            && (request.FilterByFuelId == null || model.FuelId == request.FilterByFuelId
             //            && (request.FilterByTransmissionId == null || model.TransmissionId == request.FilterByTransmissionId));
 
@@ -115,7 +129,7 @@ namespace Business.Concrete
             //        model =>
             //            new ModelListItemDto
             //            {
-            //                BrandId = model.BrandId,
+            //                Tr = model.Tr,
             //                BrandName = model.Brand.Name,
             //                FuelId = model.FuelId,
             //                FuelName = model.Fuel.Name,

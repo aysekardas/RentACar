@@ -28,11 +28,17 @@ namespace Business.BusinessRules
             }
         }
 
-        public void CheckIfModelExists(Model? modelToDelete)
+        public void CheckIfModelExists(Model? model)
         {
-            if (modelToDelete is null)
+            if (model is null)
 
                 throw new NotFoundException("Model not found");
+        }
+
+        public void CheckIfModelYearShouldBeInLast20Years(short year)
+        {
+            if (year < DateTime.UtcNow.AddYears(-20).Year)
+                throw new BusinessException("Model year should be in last 20 years.");
         }
     }
 }

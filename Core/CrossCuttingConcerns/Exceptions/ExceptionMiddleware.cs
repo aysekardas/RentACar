@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -77,40 +78,73 @@ namespace Core.CrossCuttingConcerns.Exceptions
             if (exception is NotFoundException notFoundException)
                 return createInternalProblemDetailsResponse(httpContext, notFoundException);
 
+            if (exception is ValidationException validationException)
+                return createValidationProblemDetailsResponse(httpContext, validationException);
+
             return createInternalProblemDetailsResponse(httpContext, exception);
 
         }
 
-        private Task createInternalProblemDetailsResponse(HttpContext httpContext, NotFoundException notFoundException)
+        private Task createValidationProblemDetailsResponse(
+         HttpContext httpContext,
+         ValidationException validationException
+     )
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+            ValidationProblemDetails validationProblemDetails =
+                new(
+                    type: "https://doc.rentacar.com/validation-error",
+                    title: "Validation Error",
+                    instance: httpContext.Request.Path,
+                    detail: "Please refer to the errors property for additional details.",
+                    errors: validationException
+                        .Errors.GroupBy(e => e.PropertyName, e => e.ErrorMessage)
+                        .ToDictionary(
+                            failureGroup => failureGroup.Key,
+                            failureGroup => failureGroup.ToArray()
+                        )
+                )
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+            return httpContext.Response.WriteAsync(validationProblemDetails.ToString());
+        }
+
+        private Task createNotFoundProblemDetailsResponse(
+            HttpContext httpContext,
+            NotFoundException notFoundException
+        )
         {
             httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
 
-            NotFoundProblemDetails notFoundProblemDetails = new()
-            {
-                Title = "Not Found",
-                Type = "http://doc.rentacar.com/not-found",
-                Status = StatusCodes.Status404NotFound,
-                Detail = notFoundException.Message,
-                Instance = httpContext.Request.Path
-            };
-
+            NotFoundProblemDetails notFoundProblemDetails =
+                new()
+                {
+                    Title = "Not Found",
+                    Type = "https://doc.rentacar.com/not-found",
+                    Status = StatusCodes.Status404NotFound,
+                    Detail = notFoundException.Message,
+                    Instance = httpContext.Request.Path
+                };
             return httpContext.Response.WriteAsync(notFoundProblemDetails.ToString());
-
         }
 
-        private Task createBusinessProblemDetailsResponse(HttpContext httpContext, BusinessException exception)
+        private Task createBusinessProblemDetailsResponse(
+            HttpContext httpContext,
+            BusinessException exception
+        )
         {
-
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            BusinessProblemDetails businessProblemDetails = new()
-
-            {
-                Title = "Business Exception",
-                Type = "http://doc.rentacar.com/business",
-                Status = StatusCodes.Status400BadRequest,
-                Detail = exception.Message,
-                Instance = httpContext.Request.Path
-            };
+            BusinessProblemDetails businessProblemDetails =
+                new()
+                {
+                    Title = "Business Exception",
+                    Type = "https://doc.rentacar.com/business",
+                    Status = StatusCodes.Status400BadRequest,
+                    Detail = exception.Message,
+                    Instance = httpContext.Request.Path
+                };
 
             return httpContext.Response.WriteAsync(businessProblemDetails.ToString());
         }
@@ -118,18 +152,18 @@ namespace Core.CrossCuttingConcerns.Exceptions
         private Task createInternalProblemDetailsResponse(HttpContext httpContext, Exception exception)
         {
             httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            ProblemDetails problemDetails = new()
-            {
-                Title = "Internal Server Error",
-                Type = "https://doc.rentacar.com/internal",
-                Status = StatusCodes.Status500InternalServerError,
-                Detail = exception.Message,
-                Instance = httpContext.Request.Path
-            };
+            ProblemDetails problemDetails =
+                new()
+                {
+                    Title = "Internal Server Error",
+                    Type = "https://doc.rentacar.com/internal",
+                    Status = StatusCodes.Status500InternalServerError,
+                    Detail = exception.Message,
+                    Instance = httpContext.Request.Path
+                };
 
             return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(problemDetails));
         }
-
     }
 }
     
