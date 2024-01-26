@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
             _modelService = modelService;
         }
 
-        [HttpGet]
+        [HttpGet] // GET http://localhost:5245/api/models
         public GetModelListResponse GetList([FromQuery]GetModelListRequest request)
         {
             GetModelListResponse response  =_modelService.GetList(request);
@@ -25,9 +25,10 @@ namespace WebAPI.Controllers
         
         }
 
-        [HttpGet("{Id}")]
-        //[ActionName("")]
+        //GET http://localhost:5245/api/models/1
 
+        //[ActionName("")]
+        [HttpGet("{Id}")]
         public GetModelByIdResponse GetById([FromRoute]GetModelByIdRequest request)
         {
             GetModelByIdResponse response = _modelService.GetById(request);
@@ -35,11 +36,12 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost] // POST http://localhost:5245/api/models
 
         public ActionResult<AddModelResponse> Add(AddModelRequest request)
         {
             AddModelResponse response = _modelService.Add(request);
+            // 201 Created
             return CreatedAtAction(
                 actionName: nameof(GetById),
                 routeValues: new { Id = response.Id },  //Anonymous object  //Response Header : Locaiton = http://localhost:5248/api/models/1
@@ -49,7 +51,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPut("{Id]")]
+        [HttpPut("{Id}")]  // PUT http://localhost:5245/api/models/1
 
         public ActionResult<UpdateModelResponse> Update([FromRoute] int Id, [FromBody] UpdateModelRequest request)
         {
@@ -63,7 +65,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpDelete("{Id]")]
+        [HttpDelete("{Id}")] // DELETE http://localhost:5245/api/models/1
         public DeleteModelResponse Delete([FromRoute] DeleteModelRequest request)
         {
             DeleteModelResponse response = _modelService.Delete(request);

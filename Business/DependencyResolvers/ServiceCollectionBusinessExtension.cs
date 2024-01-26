@@ -2,6 +2,7 @@
 using Business.BusinessRules;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using DataAccess.Concrete.InMemory;
 using Microsoft.EntityFrameworkCore;
@@ -36,9 +37,10 @@ namespace Business.DependencyResolvers
             //Http request gelince bir scope açılıyor, o isteğe özel bu kısmı oluşturabilirim;(O Scope her açıldığında o scope'a özel referans veriyor.
             //builder.Services.AddTransient<BrandBusinessRules>();
             services
-                .AddSingleton<IModelService, ModelManager>()
-                .AddSingleton<IModelDal, InMemoryModelDal>()
-                .AddSingleton<ModelBusinessRules>();
+                .AddScoped<IModelService, ModelManager>()
+                //.AddSingleton<IModelDal, InMemoryModelDal>()
+                .AddScoped<IModelDal, EfModelDal>()
+                .AddScoped<ModelBusinessRules>();
 
 
 
