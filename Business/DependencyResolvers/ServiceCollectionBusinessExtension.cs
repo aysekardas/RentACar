@@ -2,7 +2,10 @@
 using Business.BusinessRules;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using DataAccess.Concrete.InMemory;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -14,7 +17,7 @@ namespace Business.DependencyResolvers
         //Extension Method 
         //Metodun ve barındığı class'ın statik olması gerekiyor (private alan varsa ulaşamayacağım)
         //ilk parametre genişleteceğimiz tip olmalı ve başında this keyword'ü olmalı
-        public static IServiceCollection AddBusinessServices(this IServiceCollection services)
+        public static IServiceCollection AddBusinessServices(this IServiceCollection services,IConfiguration configuration)
         {
 
             //Singleton : Tek bir nesne oluşturur ve herkese onu verir.
@@ -44,7 +47,9 @@ namespace Business.DependencyResolvers
 
             //Reflection yöntemiyle Profile class'ını kalıtım alan tüm class'ları bulur ve AutoMapper'a ekler.
 
-
+            services.AddDbContext<RentACarContext>(options => options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection"
+                )));
             return services;
         }
 
