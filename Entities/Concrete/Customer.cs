@@ -14,6 +14,12 @@ namespace Entities.Concrete
         {
         }
 
+        public Customer(int userId)
+        {
+            UserId = userId;
+            
+        }
+
         public int UserId { get; set; }
 
         public User? User { get; set; } = null;
