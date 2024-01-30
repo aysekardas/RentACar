@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCorporateCustomer : ICorporateCustomer
+    public class EfCorporateCustomer : ICorporateCustomerDal
     {
         private readonly RentACarContext _context;
 
