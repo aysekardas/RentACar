@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCustomerDal : ICustomerDal
     {
+        private readonly RentACarContext _context;
+
+        public EfCustomerDal(RentACarContext context)
+        {
+            _context = context;
+        }
+
         public Customer Add(Customer entity)
         {
             throw new NotImplementedException();

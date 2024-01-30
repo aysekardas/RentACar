@@ -10,6 +10,13 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class EfUserDal : IUserDal
     {
+        private readonly RentACarContext _context;
+
+        public EfUserDal(RentACarContext context)
+        {
+            _context = context;
+        }
+
         public User Add(User entity)
         {
             throw new NotImplementedException();
