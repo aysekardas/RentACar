@@ -21,6 +21,13 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Car>Cars { get; set; }
 
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
+
+        public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public RentACarContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
             
