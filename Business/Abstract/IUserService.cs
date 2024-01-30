@@ -1,7 +1,4 @@
-﻿using Business.Request.User;
-using Business.Requests.Model;
-using Business.Requests.User;
-using Business.Responses.Model;
+﻿using Business.Requests.User;
 using Business.Responses.User;
 using DataAccess.Abstract;
 using System;
