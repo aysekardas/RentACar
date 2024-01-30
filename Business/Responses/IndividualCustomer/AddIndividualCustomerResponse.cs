@@ -1,5 +1,7 @@
-﻿namespace Business.Responses.IndividualCustomer;
-
-public class AddIndividualCustomerResponse
+﻿namespace Business.Responses.IndividualCustomer
 {
+
+    public class AddIndividualCustomerResponse
+    {
+    }
 }

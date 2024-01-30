@@ -1,5 +1,5 @@
-﻿namespace Business.Abstract
-{
+﻿namespace Business.Requests.CorporateCustomer
+{ 
     public class UpdateCorporateCustomerRequest
     {
     }

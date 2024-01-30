@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessRules
 {
-    public class CorparateCustomerBusinessRules
+    public class CorporateCustomerBusinessRules
     {
         private readonly ICorporateCustomerDal _corporateCustomerDal;
 
-        public CorparateCustomerBusinessRules(ICorporateCustomerDal corporateCustomerDal)
+        public CorporateCustomerBusinessRules(ICorporateCustomerDal corporateCustomerDal)
         {
             _corporateCustomerDal = corporateCustomerDal;
         }

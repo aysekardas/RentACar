@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.BusinessRules;
 using Business.Requests.CorporateCustomer;
-using Business.Responses.CorpateCustomer;
+using Business.Responses.CorporateCustomer;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,20 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CorparateCustomerManager : ICorporateCustomerService
+    public class CorporateCustomerManager : ICorporateCustomerService
     {
         private readonly ICorporateCustomerDal _corporateCustomerDal;
-        private readonly CorparateCustomerManager _corporateCustomerManager;
+        private readonly CorporateCustomerBusinessRules _corporateCustomerBusinessRules;
         private readonly IMapper _mapper;
 
-        public CorparateCustomerManager(ICorporateCustomerDal corporateCustomerDal, CorparateCustomerManager corporateCustomerManager, IMapper mapper)
+        public CorporateCustomerManager(ICorporateCustomerDal corporateCustomerDal, CorporateCustomerBusinessRules corporateCustomerBusinessRules, IMapper mapper)
         {
             _corporateCustomerDal = corporateCustomerDal;
-            _corporateCustomerManager = corporateCustomerManager;
+            _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
             _mapper = mapper;
         }
 
-        public AddCorpateCustomerResponse Add(AddCorporateCustomerRequest request)
+        public AddCorporateCustomerResponse Add(AddCorporateCustomerRequest request)
         {
             throw new NotImplementedException();
         }

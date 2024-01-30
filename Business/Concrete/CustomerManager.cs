@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.BusinessRules;
 using Business.Requests.Customer;
 using Business.Responses.Customer;
 using DataAccess.Abstract;
@@ -14,13 +15,13 @@ namespace Business.Concrete
     public class CustomerManager : ICustomerService
     {
         private readonly ICustomerDal _customerDal;
-        private readonly CustomerManager _customerManager;
+        private readonly CustomerBusinessRules _customerBusinessRules;
         private readonly IMapper _mapper;
 
-        public CustomerManager(ICustomerDal customerDal, CustomerManager customerManager, IMapper mapper)
+        public CustomerManager(ICustomerDal customerDal, CustomerBusinessRules customerBusinessRules, IMapper mapper)
         {
             _customerDal = customerDal;
-            _customerManager = customerManager;
+            _customerBusinessRules = customerBusinessRules;
             _mapper = mapper;
         }
 

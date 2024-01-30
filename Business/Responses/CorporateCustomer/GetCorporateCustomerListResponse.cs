@@ -1,4 +1,4 @@
-﻿namespace Business.Responses.CorpateCustomer
+﻿namespace Business.Responses.CorporateCustomer
 {
     public class GetCorporateCustomerListResponse
     {

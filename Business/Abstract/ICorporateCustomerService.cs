@@ -1,5 +1,5 @@
 ﻿using Business.Requests.CorporateCustomer;
-using Business.Responses.CorpateCustomer;
+using Business.Responses.CorporateCustomer;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -13,7 +13,7 @@ namespace Business.Abstract
     public interface ICorporateCustomerService
 
     {
-        public AddCorpateCustomerResponse Add(AddCorporateCustomerRequest request);
+        public AddCorporateCustomerResponse Add(AddCorporateCustomerRequest request);
 
         public GetCorporateCustomerListResponse GetList(GetCorporateCustomerListRequest request);
         public GetCorporateCustomerByIdResponse GetById(GetCorporateCustomerByIdRequest request);
