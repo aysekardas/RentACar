@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework.Contexts;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,36 +9,31 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfIndividualCustomer : IIndividualCustomer
+    public class EfCorporateCustomerDal : ICorporateCustomerDal
     {
         private readonly RentACarContext _context;
 
-        public EfIndividualCustomer(RentACarContext context)
-        {
-            _context = context;
-        }
-
-        public IIndividualCustomer Add(IIndividualCustomer entity)
+        public CorporateCustomer Add(CorporateCustomer entity)
         {
             throw new NotImplementedException();
         }
 
-        public IIndividualCustomer Delete(IIndividualCustomer entity, bool isSoftDelete = true)
+        public CorporateCustomer Delete(CorporateCustomer entity, bool isSoftDelete = true)
         {
             throw new NotImplementedException();
         }
 
-        public IIndividualCustomer? Get(Func<IIndividualCustomer, bool> predicate)
+        public CorporateCustomer? Get(Func<CorporateCustomer, bool> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IList<IIndividualCustomer> GetList(Func<IIndividualCustomer, bool>? predicate = null)
+        public IList<CorporateCustomer> GetList(Func<CorporateCustomer, bool>? predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public IIndividualCustomer Update(IIndividualCustomer entity)
+        public CorporateCustomer Update(CorporateCustomer entity)
         {
             throw new NotImplementedException();
         }
