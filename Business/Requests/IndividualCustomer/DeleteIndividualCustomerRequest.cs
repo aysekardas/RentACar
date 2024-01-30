@@ -2,5 +2,7 @@
 {
     public class DeleteIndividualCustomerRequest
     {
+        public int Id { get; set; }
+
     }
 }
