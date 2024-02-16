@@ -10,7 +10,7 @@ namespace Core.DataAccess.EntityFramework
 {
     //T =>Type
     public class EfEntityRepositoryBase<TEntity, TEntityId,TContext> : IEntityRepository<TEntity, TEntityId> 
-        where TEntity : Entity<TEntity>
+        where TEntity : Entity<TEntityId>
         where TContext : DbContext
     {
         //Kullanıcının verdiği TEntity Entity class'ından türemiş olmalı, verilen Id türü de aynı olmalı
