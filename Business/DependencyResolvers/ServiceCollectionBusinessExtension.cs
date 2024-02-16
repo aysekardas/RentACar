@@ -29,9 +29,9 @@ namespace Business.DependencyResolvers
 
             //Fluent yapı;
             services
-                .AddSingleton<IBrandService, BrandManager>()
-                .AddSingleton<IBrandDal, InMemoryBrandDal>()
-                .AddSingleton<BrandBusinessRules>();
+            .AddScoped<IBrandService, BrandManager>()
+            .AddScoped<IBrandDal, EfBrandDal>()
+            .AddScoped<BrandBusinessRules>();
             /*builder.Services.AddScoped<Random>();*/ //new Random
 
             //Http request gelince bir scope açılıyor, o isteğe özel bu kısmı oluşturabilirim;(O Scope her açıldığında o scope'a özel referans veriyor.
