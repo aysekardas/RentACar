@@ -37,7 +37,5 @@ namespace Business.Responses.Car
 
         public string Plate { get; set; }
 
-        
-
     }
 }
