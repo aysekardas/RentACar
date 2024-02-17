@@ -42,6 +42,42 @@ namespace Business.DependencyResolvers
                 .AddScoped<IModelDal, EfModelDal>()
                 .AddScoped<ModelBusinessRules>();
 
+            services
+                .AddScoped<ICorporateCustomerService, CorporateCustomerManager>()
+                .AddScoped<ICorporateCustomerDal, EfCorporateCustomerDal>()
+                .AddScoped<CorporateCustomerBusinessRules>();
+
+
+            services
+                .AddScoped<ICustomerService, CustomerManager>()
+                .AddScoped<ICustomerDal, EfCustomerDal>()
+                .AddScoped<CustomerBusinessRules>();    
+
+            services
+                .AddScoped<IFuelService, FuelManager>()
+                .AddScoped<IFuelDal, EfFuelDal>()
+                .AddScoped<FuelManager>();
+
+            services
+                .AddScoped<IIndividualCustomerService, IndividualCustomerManager>()
+                .AddScoped<IIndividualCustomerDal, EfIndividualCustomerDal>()
+                .AddScoped<IndividualCustomerBusinessRules>();
+
+            services
+                .AddScoped<ITransmissionService, TransmissionManager>()
+                .AddScoped<ITransmissionDal, EfTransmissionDal>()
+                .AddScoped<TransmissionBusinessRules>();
+
+            services
+                .AddScoped<IUserService, UserManager>()
+                .AddScoped<IUserDal, EfUserDal>()
+                .AddScoped<UserBusinessRules>();    
+
+            services
+                .AddScoped<ICarService, CarManager>()
+                .AddScoped<ICarDal, EfCarDal>()
+                .AddScoped<CarBusinessRules>(); 
+
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
