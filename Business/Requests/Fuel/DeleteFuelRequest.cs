@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Business.Requests.Fuel
 {
-    public class GetFuelListRequest
+    public class DeleteFuelRequest
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public DeleteFuelRequest(int ıd)
+        {
+            Id = ıd;
+        }
     }
 }

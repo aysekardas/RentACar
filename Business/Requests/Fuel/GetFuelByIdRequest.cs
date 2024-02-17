@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.Requests.Fuel
 {
-    public class GetFuelListRequest
+    public class GetFuelByIdRequest
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Requests.Fuel
 {
-    public class GetFuelListRequest
+    public class UpdateFuelRequest
     {
         public string Name { get; set; }
     }
