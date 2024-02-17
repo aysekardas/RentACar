@@ -56,6 +56,16 @@ namespace Business.Concrete
             //Brand addedBrand = _brandDal.Add();
         }
 
+        public DeleteBrandResponse Delete(DeleteBrandRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetBrandByIdResponse GetById(GetBrandByIdRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public GetBrandListResponse GetList(GetBrandListRequest request)
         {
             //brandList.Items diye bir alan yok, bu yüzden mapping
@@ -65,6 +75,11 @@ namespace Business.Concrete
             IList<Brand> brandList = _brandDal.GetList();
             GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList);
             return response;
+        }
+
+        public UpdateBrandResponse Update(UpdateBrandRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

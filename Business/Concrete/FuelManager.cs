@@ -38,6 +38,16 @@ namespace Business.Concrete
             return response;
         }
 
+        public DeleteFuelResponse Delete(DeleteFuelRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetFuelByIdResponse GetById(GetFuelByIdRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public GetFuelListResponse GetList(GetFuelListRequest request)
         {
             IList<Fuel> fuelList = _fuelDal.GetList();
@@ -45,6 +55,11 @@ namespace Business.Concrete
             return response;
             //IList<Fuel> fuelList = _fuelDal.GetList();
             //return fuelList;
+        }
+
+        public UpdateFuelResponse Update(UpdateFuelRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

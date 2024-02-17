@@ -54,6 +54,20 @@ namespace Business.Concrete
             return response;
         }
 
+        public GetCarByIdResponse GetById(GetCarByIdRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UpdateCarResponse Update(UpdateCarRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DeleteCarResponse Delete(DeleteCarRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 
    

@@ -37,12 +37,27 @@ namespace Business.Concrete
             return response;
         }
 
+        public DeleteTransmissionResponse Delete(DeleteTransmissionRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetTransmissionByIdResponse GetById(GetTransmissionByIdRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public GetTransmissionListResponse GetList(GetTransmissionListRequest request)
         {
             IList<Transmission> transmissionList = _transmissionDal.GetList();
             GetTransmissionListResponse response = _mapper.Map<GetTransmissionListResponse>(transmissionList);
             return response;
            // return transmissionList;
+        }
+
+        public UpdateTransmissionResponse Update(UpdateTransmissionRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

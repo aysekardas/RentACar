@@ -11,5 +11,10 @@ namespace Business.Abstract
 
         public GetBrandListResponse GetList(GetBrandListRequest request);
 
+        public GetBrandByIdResponse GetById(GetBrandByIdRequest request);
+
+        public UpdateBrandResponse Update(UpdateBrandRequest request);
+        public DeleteBrandResponse Delete(DeleteBrandRequest request);
+
     }
 }

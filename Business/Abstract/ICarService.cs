@@ -14,5 +14,9 @@ namespace Business.Abstract
        public AddCarResponse Add(AddCarRequest request);
 
         public GetCarListResponse GetList(GetCarListRequest request);
+        public GetCarByIdResponse GetById(GetCarByIdRequest request);
+
+        public UpdateCarResponse Update(UpdateCarRequest request);
+        public DeleteCarResponse Delete(DeleteCarRequest request);
     }
 }

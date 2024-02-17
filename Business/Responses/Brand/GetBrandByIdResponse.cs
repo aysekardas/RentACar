@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Responses.Brand
 {
-    public class GetBrandByIdRepsonse
+    public class GetBrandByIdResponse
     {
     }
 }

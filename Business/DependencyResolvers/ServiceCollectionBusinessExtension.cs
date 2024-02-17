@@ -56,7 +56,7 @@ namespace Business.DependencyResolvers
             services
                 .AddScoped<IFuelService, FuelManager>()
                 .AddScoped<IFuelDal, EfFuelDal>()
-                .AddScoped<FuelManager>();
+                .AddScoped<FuelBusinessRules>();
 
             services
                 .AddScoped<IIndividualCustomerService, IndividualCustomerManager>()
