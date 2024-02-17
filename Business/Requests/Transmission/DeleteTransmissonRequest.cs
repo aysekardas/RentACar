@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Business.Requests.Transmission
 {
-    public class GetTransmissionListRequest
+    public class DeleteTransmissonRequest
     {
-        public string Name { get; set; }
-        public GetTransmissionListRequest(string name)
+        public int Id { get; set; }
+
+        public DeleteTransmissonRequest(int id)
         {
-            Name = name;
+            Id = id;
         }
     }
 }
