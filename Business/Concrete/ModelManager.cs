@@ -33,21 +33,6 @@ namespace Business.Concrete
 
         public AddModelResponse Add(AddModelRequest request)
         {
-            //Validation
-            //fluent validation ile buradan ayrıştıracağız daha sonra
-
-
-
-
-
-
-            //if (request.Name.Length < 2)
-            //    throw new Exception("Name must be at least 2 characters long.");
-            //if (request.Name.Length > 50)
-            //    throw new Exception("Name cannot be longer then 50 characters");
-
-            //if (request.DailyPrice <= 0)
-            //    throw new Exception("Daily price must be greater than 0.");
 
 
             AddModelRequestValidator validator = new();
@@ -58,7 +43,9 @@ namespace Business.Concrete
             _modelBusinessRules.CheckIfModelYearShouldBeInLast20Years(request.Year);
 
             //mapping
+            _modelBusinessRules.CheckIfBrandExists(request.BrandId);
             var modelToAdd = _mapper.Map<Model>(request);
+        
 
             //data operations
 
@@ -151,13 +138,10 @@ namespace Business.Concrete
         {
             Model? modelToUpdate = _modelDal.Get(predicate: model => model.Id == request.Id); //0x123123
             _modelBusinessRules.CheckIfModelExists(modelToUpdate);
-
-            //Bu şekilde yapmayacağız;
-            //modelToUpdate = _mapper.Map<Model>(request); //0x333123 yeni bir referans
-            //Çünkü bizim için yeni bir nesne (referans) oluşturuyor. Ve ayrıca entity sınıfında olup da request sınıfında olmayan alanlar(örneğin CreatedAt vb.) varsayılan değerler alacak, böylece yanlış veri güncellemesi yapmış oluruz. 
+            _modelBusinessRules.CheckIfBrandExists(request.BrandId); 
             modelToUpdate = _mapper.Map(request, modelToUpdate); /*0x123123*/
             Model updatedModel = _modelDal.Update(modelToUpdate!); /*0x123123*/
-
+                
 
             var response = _mapper.Map<UpdateModelResponse>(updatedModel);
             return response;

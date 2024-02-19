@@ -15,6 +15,8 @@ namespace Business.Abstract
 
         public UpdateBrandResponse Update(UpdateBrandRequest request);
         public DeleteBrandResponse Delete(DeleteBrandRequest request);
-
+        Brand? GetById(int id); //TODO: Replace with DTO
     }
+
 }
+

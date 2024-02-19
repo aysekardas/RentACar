@@ -20,7 +20,8 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-       private readonly IBrandDal _brandDal;
+        //Bir entity service'i kendi entitysi dışında hiçbir entity'nin DAL'ını enjekte etmemelidir.
+        private readonly IBrandDal _brandDal; 
         private readonly BrandBusinessRules _brandBusinessRules;
         private readonly IMapper _mapper;
         public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper)
@@ -33,16 +34,7 @@ namespace Business.Concrete
         }
         public AddBrandResponse Add(AddBrandRequest request)
         {
-
-            //addBrandRequest
-            //İş kuralları
             _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
-            //validation
-            //yetki kontrolü
-            //Cache
-            //Transaction
-
-            //Brand brandToAdd = new(request.Name); --Bunu yapmak yerine mapping yapacağız
        
             Brand brandToAdd = _mapper.Map<Brand>(request);      //Mapping 
             _brandDal.Add(brandToAdd);
@@ -64,6 +56,11 @@ namespace Business.Concrete
         public GetBrandByIdResponse GetById(GetBrandByIdRequest request)
         {
             throw new NotImplementedException();
+        }
+
+        public Brand? GetById(int id)
+        {
+            return _brandDal.Get(i => i.Id == id);
         }
 
         public GetBrandListResponse GetList(GetBrandListRequest request)
