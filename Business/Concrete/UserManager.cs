@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using Business.Abstract;
-using Business.BusinessRules;
+﻿using Business.Abstract;
 using Business.Requests.User;
-using Business.Responses.User;
+using Core.Entities;
+using Core.Utilities.Security.Hashing;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -15,39 +15,38 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         private readonly IUserDal _userDal;
-        private readonly UserBusinessRules _userBusinessRules;
-        private readonly IMapper _mapper;
-
-        public UserManager(IUserDal userDal, UserBusinessRules userBusinessRules, IMapper mapper)
+        private readonly ITokenHelper _tokenHelper;
+        public UserManager(IUserDal userDal, ITokenHelper tokenHelper)
         {
             _userDal = userDal;
-            _userBusinessRules = userBusinessRules;
-            _mapper = mapper;
+            _tokenHelper = tokenHelper;
         }
 
-        public AddUserResponse Add(AddUserRequest request)
+        public AccessToken Login(LoginRequest request)
         {
-            throw new NotImplementedException();
+            User? user = _userDal.Get(i => i.Email == request.Email);
+            // Business Rules...
+
+            bool isPasswordCorrect = HashingHelper.VerifyPassword(request.Password, user.PasswordHash, user.PasswordSalt);
+
+            if (!isPasswordCorrect)
+                throw new Exception("Şifre yanlış.");
+            return _tokenHelper.CreateToken(user);
         }
 
-        public DeleteUserResponse Delete(DeleteUserRequest request)
+        public void Register(RegisterRequest request)
         {
-            throw new NotImplementedException();
-        }
+            byte[] passwordSalt, passwordHash;
+            HashingHelper.CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
 
-        public GetUserByIdResponse GetById(GetUserByIdRequest request)
-        {
-            throw new NotImplementedException();
-        }
+            // TODO: Auto-Mapping
+            User user = new User();
+            user.Email = request.Email;
+            user.Approved = false;
+            user.PasswordSalt = passwordSalt;
+            user.PasswordHash = passwordHash;
 
-        public GetUserListResponse GetList(GetUserListRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public UpdateUserResponse Update(UpdateUserRequest request)
-        {
-            throw new NotImplementedException();
+            _userDal.Add(user);
         }
     }
 }

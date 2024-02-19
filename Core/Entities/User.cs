@@ -14,7 +14,7 @@ namespace Core.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
 
-        public string Approved { get; set; }
+        public bool Approved { get; set; }
 
         //abc123 => plain text
         //hashing, SHA512, MD5=>DOKLJBDKSKLB22VKL

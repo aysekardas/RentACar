@@ -1,6 +1,8 @@
-﻿using Business.Abstract;
+﻿using System.Reflection;
+using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
@@ -8,7 +10,6 @@ using DataAccess.Concrete.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 
 namespace Business.DependencyResolvers
@@ -20,7 +21,7 @@ namespace Business.DependencyResolvers
         //ilk parametre genişleteceğimiz tip olmalı ve başında this keyword'ü olmalı
         public static IServiceCollection AddBusinessServices(this IServiceCollection services,IConfiguration configuration)
         {
-
+            services.AddScoped<ITokenHelper, JwtTokenHelper>();
             //Singleton : Tek bir nesne oluşturur ve herkese onu verir.
             //services.AddSingleton<IBrandService, BrandManager>();
             //services.AddSingleton<IBrandDal, InMemoryBrandDal>();
@@ -69,16 +70,13 @@ namespace Business.DependencyResolvers
                 .AddScoped<TransmissionBusinessRules>();
 
             services
-                .AddScoped<IUserService, UserManager>()
-                .AddScoped<IUserDal, EfUserDal>()
-                .AddScoped<UserBusinessRules>();    
-
-            services
                 .AddScoped<ICarService, CarManager>()
                 .AddScoped<ICarDal, EfCarDal>()
-                .AddScoped<CarBusinessRules>(); 
+                .AddScoped<CarBusinessRules>();
 
-
+            services
+             .AddScoped<IUserService, UserManager>()
+             .AddScoped<IUserDal, EfUserDal>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //AutoMapper.Extensions.Microsoft.DependencyInjection NuGet Paketi

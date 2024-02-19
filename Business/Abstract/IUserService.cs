@@ -1,5 +1,5 @@
 ﻿using Business.Requests.User;
-using Business.Responses.User;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,9 @@ namespace Business.Abstract
 {
     public interface IUserService 
     {
+        void Register(RegisterRequest request);
 
-        public AddUserResponse Add(AddUserRequest request);
+        AccessToken Login(LoginRequest request); //TODO: return type: JWT 
 
-        public GetUserListResponse GetList(GetUserListRequest request);
-
-        public GetUserByIdResponse GetById(GetUserByIdRequest request);
-
-        public UpdateUserResponse Update(UpdateUserRequest request);
-        public DeleteUserResponse Delete(DeleteUserRequest request);
     }
 }
