@@ -10,6 +10,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,30 @@ namespace Business.Concrete
         private readonly IBrandDal _brandDal; 
         private readonly BrandBusinessRules _brandBusinessRules;
         private readonly IMapper _mapper;
-        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+      
+
+        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {    //new InMemoryBrandDal(); //Başka katmanların class'ları new'lenmez. //Bu yüzden dependency injection
 
             _brandDal = brandDal;
              _brandBusinessRules = brandBusinessRules;
             _mapper = mapper;
-       
+            _httpContextAccessor = httpContextAccessor;
+
         }
+
+        // AOP => Aspect Oriented Programming - Autofac
+        // Pipeline 
         public AddBrandResponse Add(AddBrandRequest request)
         {
+
+            if (!_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                throw new Exception("Bu endpointi çalıştırmak için giriş yapmak zorundasınız!");
+            }
+
             _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
        
             Brand brandToAdd = _mapper.Map<Brand>(request);      //Mapping 
