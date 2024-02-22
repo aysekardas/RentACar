@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Requests.User;
-using Core.Entities;
+using Core.Entities.Concrete;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;

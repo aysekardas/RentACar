@@ -1,4 +1,5 @@
 ﻿
+using Business.Dtos.Brand;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
 using Entities.Concrete;
@@ -16,6 +17,8 @@ namespace Business.Abstract
         public UpdateBrandResponse Update(UpdateBrandRequest request);
         public DeleteBrandResponse Delete(DeleteBrandRequest request);
         Brand? GetById(int id); //TODO: Replace with DTO
+        //void AddBrand(BrandDto brandDto);
+        //void UpdateBrand(BrandDto brandDto);
     }
 
 }

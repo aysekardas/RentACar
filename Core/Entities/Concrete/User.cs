@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities
+namespace Core.Entities.Concrete
 {
-    public class User: Entity<int>
+    public class User : Entity<int>
     {
         //GENEL USER FIELDLARI
         public string Email { get; set; }
@@ -16,6 +16,7 @@ namespace Core.Entities
 
         public bool Approved { get; set; }
 
+        public bool Status { get; set; }
         //abc123 => plain text
         //hashing, SHA512, MD5=>DOKLJBDKSKLB22VKL
         //Salting => abc123 + SALT => HASH =>
