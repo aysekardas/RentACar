@@ -15,7 +15,7 @@ namespace Entities.Concrete
         public string CompanyName { get; set; }
         public short TaxNo { get; set; }
 
-        public User? User { get; set; } = null;
-        public Customer? Customer { get; set; } = null;
+        public virtual User? User { get; set; } = null;
+        public virtual Customer? Customer { get; set; } = null;
     }
 }

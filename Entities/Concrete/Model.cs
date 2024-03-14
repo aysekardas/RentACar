@@ -37,13 +37,13 @@ namespace Entities.Concrete
 
         //lazy loading
 
-        public Brand? Brand { get; set; } = null; //one-to-one ilişki
+        public virtual Brand? Brand { get; set; } = null; //one-to-one ilişki
 
-        public Fuel? Fuel { get; set; } = null; //one-to-one ilişki
+        public virtual Fuel? Fuel { get; set; } = null; //one-to-one ilişki
 
-        public Transmission? Transmission { get; set; } = null; //one-to-one ilişki
+        public virtual Transmission? Transmission { get; set; } = null; //one-to-one ilişki
 
-        public ICollection<Car>? Cars { get; set; } = null;  //model ile car arasında one-to many ilişki var.
+        public virtual ICollection<Car>? Cars { get; set; } = null;  //model ile car arasında one-to many ilişki var.
 
 
 

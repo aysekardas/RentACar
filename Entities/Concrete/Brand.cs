@@ -31,6 +31,6 @@ namespace Entities.Concrete
         //    Rating = rating;
         //}
 
-        public ICollection<Model> Models { get; set; } = null;
+        public virtual ICollection<Model> Models { get; set; } = null;
     }
 }
