@@ -89,7 +89,11 @@ namespace Core.Utilities.Security.JWT
             throw new NotImplementedException();
         }
 
-       
+        public AccessToken CreateToken(User user)
+        {
+            //ToDo
+            throw new NotImplementedException();
+        }
     }
 }
 

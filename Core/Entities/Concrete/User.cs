@@ -21,7 +21,7 @@ namespace Core.Entities.Concrete
         //hashing, SHA512, MD5=>DOKLJBDKSKLB22VKL
         //Salting => abc123 + SALT => HASH =>
 
-
+        public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; } = default!;
 
 
     }
